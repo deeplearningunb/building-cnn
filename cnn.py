@@ -17,6 +17,9 @@ from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
+from PIL import ImageFile
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 # Initialising the CNN
 classifier = Sequential()
@@ -28,6 +31,10 @@ classifier.add(Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
 # Adding a second convolutional layer
+classifier.add(Conv2D(32, (3, 3), activation = 'tanh'))
+classifier.add(MaxPooling2D(pool_size = (2, 2)))
+
+# # Adding a third convolutional layer
 classifier.add(Conv2D(32, (3, 3), activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
@@ -63,7 +70,7 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             class_mode = 'binary')
 
 classifier.fit_generator(training_set,
-                         steps_per_epoch = 8000,
-                         epochs = 25,
+                         steps_per_epoch = 160,
+                         epochs = 5,
                          validation_data = test_set,
-                         validation_steps = 2000)
+                         validation_steps = 40)
