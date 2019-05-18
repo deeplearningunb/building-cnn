@@ -24,6 +24,9 @@ classifier = Sequential()
 # Step 1 - Convolution
 classifier.add(Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'))
 
+# second convolution
+classifier.add(Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'sigmoid'))
+
 # Step 2 - Pooling
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
