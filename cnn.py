@@ -1,14 +1,5 @@
 # Convolutional Neural Network
 
-# Installing Theano
-# pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
-
-# Installing Tensorflow
-# pip install tensorflow
-
-# Installing Keras
-# pip install --upgrade keras
-
 # Part 1 - Building the CNN
 
 # Importing the Keras libraries and packages
@@ -17,6 +8,7 @@ from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
+import pickle
 
 # Initialising the CNN
 classifier = Sequential()
@@ -29,6 +21,10 @@ classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
 # Adding a second convolutional layer
 classifier.add(Conv2D(32, (3, 3), activation = 'relu'))
+classifier.add(MaxPooling2D(pool_size = (2, 2)))
+
+# Adding a third convolutional layer
+classifier.add(Conv2D(128, (3, 3), activation = 'tanh'))
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
 # Step 3 - Flattening
@@ -64,6 +60,21 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
 
 classifier.fit_generator(training_set,
                          steps_per_epoch = 8000,
-                         epochs = 25,
+                         epochs = 5,
                          validation_data = test_set,
                          validation_steps = 2000)
+
+# ========= Save Model ===============
+filename = 'training_dogcat_savemodel.sav'
+file = open(filename, 'wb')
+pickle.dump(classifier, file)
+
+file.close()
+
+# ==== Load model ====
+
+file = open(filename, 'rb')
+loaded_model = pickle.load(file)
+
+loss, metric = loaded_model.evaluate_generator(generator=test_set, steps=80)
+print("Acurácia:" + str(metric))
