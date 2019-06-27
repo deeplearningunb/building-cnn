@@ -4,3 +4,6 @@ pandas==0.24.2
 matplotlib==3.0.3
 Keras==2.2.4
 sklearn==0.0
+pillow
+
+
