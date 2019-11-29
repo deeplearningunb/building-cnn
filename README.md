@@ -13,6 +13,8 @@ Construindo uma rede neural convolucional
 # Hyper Parâmentros
 * sgd: A escolha deste parâmetro teve por base que os parâmetros do adam não generalizam tão bem quanto o sgd; 
 * Foi adicionado também uma terceira camada;
-* o parâmetro workers foi adicionado pois intensifica o treinamento, reduzindo assim o tempo necessário para rodar as *epochs*
+* O parâmetro workers foi adicionado pois intensifica o treinamento, reduzindo assim o tempo necessário para rodar as *epochs*
 
 # Conclusão
+Ao mudar os parâmetros e adicionar mais uma camada, obtivemos +0.82 em *accuracy*: <br><br>
+![](https://i.imgur.com/fFt3o4j.png)
