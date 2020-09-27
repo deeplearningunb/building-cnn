@@ -23,7 +23,7 @@ classifier = Sequential()
 
 # Step 1 - Convolution
 classifier.add(
-        Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'))
+        Conv2D(32, (3, 3), input_shape = (128, 128, 3), activation = 'elu'))
 
 # Step 2 - Pooling
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
@@ -54,12 +54,12 @@ train_datagen = ImageDataGenerator(rescale = 1./255,
 test_datagen = ImageDataGenerator(rescale = 1./255)
 
 training_set = train_datagen.flow_from_directory('dataset/training_set',
-                                                 target_size = (64, 64),
+                                                 target_size = (128, 128),
                                                  batch_size = 32,
                                                  class_mode = 'binary')
 
 test_set = test_datagen.flow_from_directory('dataset/test_set',
-                                            target_size = (64, 64),
+                                            target_size = (128, 128),
                                             batch_size = 32,
                                             class_mode = 'binary')
 
