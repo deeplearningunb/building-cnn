@@ -38,7 +38,7 @@ classifier.add(Flatten())
 # Step 4 - Full connection
 classifier.add(Dense(units = 128, activation = 'relu'))
 
-# Adding the second hidden layer
+# Adding a second layer
 classifier.add(Dense(units = 128, activation = 'relu'))
 
 # Step 5 - Output Layer
