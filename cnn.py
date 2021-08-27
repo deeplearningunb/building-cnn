@@ -29,14 +29,17 @@ classifier.add(
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
 # Adding a second convolutional layer
-classifier.add(Conv2D(32, (3, 3), activation = 'relu'))
-classifier.add(MaxPooling2D(pool_size = (2, 2)))
+cnn.add(tf.keras.layers.Conv2D(filters=64, kernel_size=3, activation='relu'))
+cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
+
+cnn.add(tf.keras.layers.Conv2D(filters=128, kernel_size=3, activation='relu'))
+cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
 
 # Step 3 - Flattening
 classifier.add(Flatten())
 
 # Step 4 - Full connection
-classifier.add(Dense(units = 128, activation = 'relu'))
+cnn.add(tf.keras.layers.Dense(units=512, activation='relu'))
 classifier.add(Dense(units = 1, activation = 'sigmoid'))
 
 # Compiling the CNN
