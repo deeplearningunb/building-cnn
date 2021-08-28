@@ -31,11 +31,24 @@ classifier.add(MaxPooling2D(pool_size = (2, 2)))
 classifier.add(Conv2D(32, (3, 3), activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
+### Adding a third convolutional layer
+
+cnn.add(tf.keras.layers.Conv2D(filters = 32,kernel_size = 3, activation = 'relu'))
+cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
+
+### Adding a fouth convolutional layer
+cnn.add(tf.keras.layers.Conv2D(filters = 32,kernel_size = 3, activation = 'relu'))
+cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
+
+
+
 # Step 3 - Flattening
 classifier.add(Flatten())
 
 # Step 4 - Full connection
 classifier.add(Dense(units = 128, activation = 'relu'))
+cnn.add(tf.keras.layers.Dense(units=128, activation='relu'))
+cnn.add(tf.keras.layers.Dense(units=128, activation='relu'))
 classifier.add(Dense(units = 1, activation = 'sigmoid'))
 
 # Compiling the CNN
